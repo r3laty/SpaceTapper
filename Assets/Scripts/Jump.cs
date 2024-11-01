@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class Jump : MonoBehaviour
 {
-    public static event Action OnJump;
     [SerializeField] private float jumpForce = 5f;
     [SerializeField] private float minSwipeDistance = 50f;
 

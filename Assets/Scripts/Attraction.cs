@@ -36,6 +36,7 @@ public class Attraction : MonoBehaviour
                 body.GetComponent<Constraint>().enabled = true;
                 body.linearVelocity = Vector2.zero;
                 _affectedBodies.Remove(body);
+                //invoke event to another planet
             }
         }
     }
