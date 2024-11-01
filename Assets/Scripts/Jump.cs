@@ -1,17 +1,25 @@
+using System;
 using UnityEngine;
 
 public class Jump : MonoBehaviour
 {
+    public static event Action OnJump;
     [SerializeField] private float jumpForce = 5f;
     [SerializeField] private float minSwipeDistance = 50f;
 
     private Vector2 _startTouchPosition;
     private Vector2 _endTouchPosition;
     private Rigidbody2D _rb;
+    private Constraint _constraint;
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _constraint = GetComponent<Constraint>();
+    }
+    private void Start()
+    {
+        _rb.linearVelocity = Vector2.zero;
     }
 
     private void Update()
@@ -41,6 +49,7 @@ public class Jump : MonoBehaviour
         {
             Vector2 direction = (_endTouchPosition - _startTouchPosition).normalized;
             _rb.linearVelocity = direction * jumpForce;
+            _constraint.enabled = false;
         }
     }
 }

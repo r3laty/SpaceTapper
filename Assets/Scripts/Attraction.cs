@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class Attraction : MonoBehaviour
 {
-    [SerializeField] private float strength = 10;
+    [SerializeField] private Transform pivot;
     private Rigidbody2D _rb;
     private List<Rigidbody2D> _affectedBodies = new List<Rigidbody2D>();
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+        Debug.Log(pivot.name);
     }
 
     private void Update()
@@ -25,13 +26,14 @@ public class Attraction : MonoBehaviour
             Vector2 position = transform.position;
             Vector2 direction = (position - body.position).normalized;  
             float distance = (position - body.position).magnitude;
-            float strength = this.strength * body.mass * _rb.mass / distance;
+            float strength = body.mass * _rb.mass / distance;
 
             body.AddForce(direction * strength);
 
             if (distance < 1)
             {
-                body.position = position;
+                body.position = pivot.position;
+                body.GetComponent<Constraint>().enabled = true;
                 body.linearVelocity = Vector2.zero;
                 _affectedBodies.Remove(body);
             }
