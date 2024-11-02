@@ -42,6 +42,8 @@ public class Jump : MonoBehaviour
 
     private void ProcessSwipe()
     {
+        transform.SetParent(null);
+
         float swipeDistance = Vector2.Distance(_startTouchPosition, _endTouchPosition);
         
         if (swipeDistance > minSwipeDistance)
