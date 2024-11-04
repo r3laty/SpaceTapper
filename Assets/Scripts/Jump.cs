@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class Jump : MonoBehaviour
@@ -10,6 +11,7 @@ public class Jump : MonoBehaviour
     private Vector2 _endTouchPosition;
     private Rigidbody2D _rb;
     private Constraint _constraint;
+    private bool _swiped;
 
     private void Awake()
     {
@@ -23,20 +25,24 @@ public class Jump : MonoBehaviour
 
     private void Update()
     {
-        if (Input.touchCount > 0)
+        if (!_swiped)
         {
-            Touch touch = Input.GetTouch(0);
-
-            if (touch.phase == TouchPhase.Began)
+            if (Input.touchCount > 0)
             {
-                _startTouchPosition = touch.position;
+                Touch touch = Input.GetTouch(0);
+
+                if (touch.phase == TouchPhase.Began)
+                {
+                    _startTouchPosition = touch.position;
+                }
+
+                if (touch.phase == TouchPhase.Ended)
+                {
+                    _endTouchPosition = touch.position;
+                    ProcessSwipe();
+                }
             }
 
-            if (touch.phase == TouchPhase.Ended)
-            {
-                _endTouchPosition = touch.position;
-                ProcessSwipe();
-            }
         }
     }
 
@@ -44,13 +50,22 @@ public class Jump : MonoBehaviour
     {
         transform.SetParent(null);
 
+        _swiped = true;
+        StartCoroutine(ResetSwipe());
+
         float swipeDistance = Vector2.Distance(_startTouchPosition, _endTouchPosition);
-        
+
         if (swipeDistance > minSwipeDistance)
         {
             Vector2 direction = (_endTouchPosition - _startTouchPosition).normalized;
             _rb.linearVelocity = direction * jumpForce;
             _constraint.enabled = false;
         }
+    }
+
+    private IEnumerator ResetSwipe()
+    {
+        yield return new WaitForSeconds(0.5f);
+        _swiped = false;
     }
 }

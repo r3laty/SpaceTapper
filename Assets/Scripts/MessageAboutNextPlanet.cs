@@ -1,3 +1,5 @@
+using System;
+
 public class MessageAboutNextPlanet
 {
     private static MessageAboutNextPlanet _instance;
@@ -9,15 +11,14 @@ public class MessageAboutNextPlanet
             {
                 _instance = new MessageAboutNextPlanet();
             }
-            
+
             return _instance;
         }
     }
 
-    public bool IsNextPlanet { get; private set; }
-
-    public void SetNextPlanet(bool value)
+    public event Action NextPlanet;
+    public void NextPlanetEvent()
     {
-        IsNextPlanet = value;
+        NextPlanet?.Invoke();
     }
 }
