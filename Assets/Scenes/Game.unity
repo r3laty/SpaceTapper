@@ -119,6 +119,25 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &9450506 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5242260860381732072, guid: 74bbf5b7626f3334d965cd5b97d37cc7, type: 3}
+  m_PrefabInstance: {fileID: 1132184440}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &9450514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9450506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce411ca9b0b3273479725495d21fd231, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 9450506}
+  homePositionY: -1.57
 --- !u!1 &44272760
 GameObject:
   m_ObjectHideFlags: 0
@@ -444,6 +463,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 297088076917424400, guid: 74bbf5b7626f3334d965cd5b97d37cc7, type: 3}
+      propertyPath: proceduralGeneration
+      value: 
+      objectReference: {fileID: 1177798672}
+    - target: {fileID: 3918869492107013897, guid: 74bbf5b7626f3334d965cd5b97d37cc7, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3918869492107013897, guid: 74bbf5b7626f3334d965cd5b97d37cc7, type: 3}
       propertyPath: targetPlanet
       value: 
@@ -495,7 +522,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5242260860381732072, guid: 74bbf5b7626f3334d965cd5b97d37cc7, type: 3}
+      insertIndex: 5
+      addedObject: {fileID: 9450514}
   m_SourcePrefab: {fileID: 100100000, guid: 74bbf5b7626f3334d965cd5b97d37cc7, type: 3}
 --- !u!1 &1177798671
 GameObject:
@@ -507,6 +537,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1177798673}
   - component: {fileID: 1177798672}
+  - component: {fileID: 1177798674}
+  - component: {fileID: 1177798675}
   m_Layer: 0
   m_Name: Procedular generation
   m_TagString: Untagged
@@ -526,6 +558,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 329df47347855c04a8ce6a17eba1fdb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  returnPlayer: {fileID: 9450514}
   planetPositionY: -2.41
   firstPlanet: {fileID: 2534458326784291266}
   basePlanet: {fileID: 8720044239140252331}
@@ -587,6 +620,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1177798674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1177798671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 425be2b937e4d0249bdbe1aa4e7c4321, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  proceduralGeneration: {fileID: 1177798672}
+--- !u!114 &1177798675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1177798671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbefe3038ea5e904f9242abfc5b684a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  proceduralGeneration: {fileID: 1177798672}
+  planetPositionY: -2.41
 --- !u!1 &1803914958
 GameObject:
   m_ObjectHideFlags: 0
@@ -658,6 +718,7 @@ GameObject:
   - component: {fileID: 4004368020947127682}
   - component: {fileID: 7385605833898215868}
   - component: {fileID: 7385605833898215867}
+  - component: {fileID: 7385605833898215869}
   m_Layer: 0
   m_Name: 2_0
   m_TagString: Planet
@@ -742,7 +803,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2534458326784291266}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 47ed7c0619045e249bf71975c8b39ff1, type: 3}
   m_Name: 
@@ -907,13 +968,25 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 5, y: 5}
   m_Direction: 0
+--- !u!114 &7385605833898215869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2534458326784291266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 895603f73cdd9aa48ade56b747ce72fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &7426577750813409822
 Transform:
   m_ObjectHideFlags: 0

@@ -48,8 +48,6 @@ public class Jump : MonoBehaviour
 
     private void ProcessSwipe()
     {
-        transform.SetParent(null);
-
         _swiped = true;
         StartCoroutine(ResetSwipe());
 

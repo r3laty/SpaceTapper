@@ -1,24 +1,24 @@
 using System;
+using UnityEngine;
 
-public class MessageAboutNextPlanet
+public class MessageAboutNextPlanet : MonoBehaviour
 {
-    private static MessageAboutNextPlanet _instance;
-    public static MessageAboutNextPlanet Instance
+    public static MessageAboutNextPlanet Instance;
+    [SerializeField] private ProcedularGeneration proceduralGeneration;
+    
+    private void Awake()
     {
-        get
+        if (Instance != null && Instance != this)
         {
-            if (_instance == null)
-            {
-                _instance = new MessageAboutNextPlanet();
-            }
-
-            return _instance;
+            Destroy(gameObject);
+            return;
         }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
-    public event Action NextPlanet;
     public void NextPlanetEvent()
     {
-        NextPlanet?.Invoke();
+        proceduralGeneration.OnPlanetEnd();
     }
 }
