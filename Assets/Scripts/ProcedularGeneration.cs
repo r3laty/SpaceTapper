@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class ProcedularGeneration : MonoBehaviour
 {
-    public GameObject CurrentPlanet => _currentPlanet;
     [SerializeField] private ReturnToHome returnPlayer;
     [Space]
     [SerializeField] private float planetPositionY = -2.41f;
@@ -16,73 +15,45 @@ public class ProcedularGeneration : MonoBehaviour
     private GameObject _prepreviousPlanet = null;
     private GameObject _oldPlanets = null;
 
-    // 1 - public void OnPlanetEnd() - вызывается когда игрок прибывает на другую планету, в этом скрипте происходит перемещение планеты и создание новой. Сначала перемещаем, берем
-    // текущую, которая у нас на сцене 
-    // 2 - 
-    // 3 - 
-    //
-    //
-    //
-    //
-    //
-    //
     private void Start()
     {
-        Debug.Log("7ProcedularGeneration Start");
+        Debug.Log("ProcedularGeneration Start");
         MessageAboutNextPlanet.Instance.SetProcedularGeneration(this);
     }
     public void OnPlanetEnd()
     {
-        Debug.Log("OnPlanetEnd");
-
-        Debug.Log("call method MovePlanet");
         MovePlanet();
-        Debug.Log("MovePlanet finished");
-        Debug.Log("Instantiate new planet");
-        _currentPlanet = Instantiate(planetPrefabs[Random.Range(0, planetPrefabs.Count)],
-            planetSpawnPoints[Random.Range(0, planetSpawnPoints.Count)].position,
-            Quaternion.identity);
+        _currentPlanet = Instantiate(RandomPlanet(),RandomSpawnPoint().position,Quaternion.identity);
     }
     private void MovePlanet()
     {
-        Debug.Log("enter to method MovePlanet");
         if (_prepreviousPlanet != null)
         {
-            Debug.Log($"_prepreviousPlanet != null, _prepreviousPlanet.name = {_prepreviousPlanet.name}");
+            _prepreviousPlanet?.transform.SetParent(_oldPlanets.transform);
             _prepreviousPlanet.SetActive(false);
         }
+
         if (basePlanet != null && basePlanet.activeSelf)
         {
-            Debug.Log("MovePlanet basePlanet != null && basePlanet.activeSelf");
             basePlanet.SetActive(false);
         }
 
         if (_currentPlanet != null)
         {
-            Debug.Log("MovePlanet _currentPlanet != null");
             _previousPlanet = _currentPlanet;
             _currentPlanet = null;
-//            Debug.Log("MovePlanet _previousPlanet = " + _previousPlanet.name + " _currentPlanet = null");
-        }
-        else if (_previousPlanet != null)
-        {
-            _previousPlanet.transform.position = new Vector2(0, planetPositionY);
-            _prepreviousPlanet = _previousPlanet;
-            Debug.Log("_previousPlanet.transform.position = " + _previousPlanet.transform.position);
         }
         else
         {
-            Debug.Log("_currentPlanet == null, firstPlanet.transform.position = " + firstPlanet.transform.position);
             firstPlanet.transform.position = new Vector2(0, planetPositionY);
             _prepreviousPlanet = firstPlanet;
         }
 
-        // if (firstPlanet.activeSelf && firstPlanet.transform.position.y >= planetPositionY && _previousPlanet == null || _currentPlanet == null)
-        // {
-        //     Debug.Log("MovePlanet firstPlanet.SetActive(false) in if activeself");
-        //     firstPlanet.SetActive(false);
-        // }
-
+        if (_previousPlanet != null)
+        {
+            _previousPlanet.transform.position = new Vector2(0, planetPositionY);
+            _prepreviousPlanet = _previousPlanet;
+        }
 
         if (_oldPlanets == null)
         {
@@ -90,6 +61,13 @@ public class ProcedularGeneration : MonoBehaviour
         }
 
         returnPlayer.Return();
-        // _previousPlanet?.transform.SetParent(_oldPlanets.transform);
+    }
+    private GameObject RandomPlanet()
+    {
+        return planetPrefabs[Random.Range(0, planetPrefabs.Count)];
+    }
+    private Transform RandomSpawnPoint()
+    {
+        return planetSpawnPoints[Random.Range(0, planetSpawnPoints.Count)];
     }
 }
