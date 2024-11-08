@@ -537,8 +537,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1177798673}
   - component: {fileID: 1177798672}
-  - component: {fileID: 1177798674}
-  - component: {fileID: 1177798675}
   m_Layer: 0
   m_Name: Procedular generation
   m_TagString: Untagged
@@ -620,33 +618,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1177798674
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1177798671}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 425be2b937e4d0249bdbe1aa4e7c4321, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  proceduralGeneration: {fileID: 1177798672}
---- !u!114 &1177798675
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1177798671}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbefe3038ea5e904f9242abfc5b684a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  proceduralGeneration: {fileID: 1177798672}
-  planetPositionY: -2.41
 --- !u!1 &1803914958
 GameObject:
   m_ObjectHideFlags: 0
@@ -715,7 +686,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7385605833898215866}
   - component: {fileID: 6104990439784002897}
-  - component: {fileID: 4004368020947127682}
   - component: {fileID: 7385605833898215868}
   - component: {fileID: 7385605833898215867}
   - component: {fileID: 7385605833898215869}
@@ -796,21 +766,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4004368020947127682
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2534458326784291266}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47ed7c0619045e249bf71975c8b39ff1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pivot: {fileID: 2782008234797464910}
-  rb: {fileID: 7385605833898215867}
-  strengthMultiplier: 3
 --- !u!114 &4716932290504098892
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -25,32 +25,25 @@ public class Jump : MonoBehaviour
 
     private void Update()
     {
-        if (!_swiped)
+        if (Input.touchCount > 0)
         {
-            if (Input.touchCount > 0)
+            Touch touch = Input.GetTouch(0);
+
+            if (touch.phase == TouchPhase.Began)
             {
-                Touch touch = Input.GetTouch(0);
-
-                if (touch.phase == TouchPhase.Began)
-                {
-                    _startTouchPosition = touch.position;
-                }
-
-                if (touch.phase == TouchPhase.Ended)
-                {
-                    _endTouchPosition = touch.position;
-                    ProcessSwipe();
-                }
+                _startTouchPosition = touch.position;
             }
 
+            if (touch.phase == TouchPhase.Ended)
+            {
+                _endTouchPosition = touch.position;
+                ProcessSwipe();
+            }
         }
     }
 
     private void ProcessSwipe()
     {
-        _swiped = true;
-        StartCoroutine(ResetSwipe());
-
         float swipeDistance = Vector2.Distance(_startTouchPosition, _endTouchPosition);
 
         if (swipeDistance > minSwipeDistance)
@@ -59,11 +52,5 @@ public class Jump : MonoBehaviour
             _rb.linearVelocity = direction * jumpForce;
             _constraint.enabled = false;
         }
-    }
-
-    private IEnumerator ResetSwipe()
-    {
-        yield return new WaitForSeconds(0.5f);
-        _swiped = false;
     }
 }
