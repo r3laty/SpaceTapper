@@ -1,7 +1,9 @@
+using System;
 using UnityEngine;
 
 public class Death : MonoBehaviour
 {
+    public static event Action Dead;
     [SerializeField] private GameObject player;
     private Rigidbody2D _playerRb;
     private Animator _playerAnimator;
@@ -17,7 +19,7 @@ public class Death : MonoBehaviour
             _playerRb.bodyType = RigidbodyType2D.Kinematic;
             _playerRb.linearVelocity = Vector2.zero;
             _playerAnimator.SetTrigger("Nothing");
+            Dead?.Invoke();
         }
-        //death menu in canvas
     }
 }
