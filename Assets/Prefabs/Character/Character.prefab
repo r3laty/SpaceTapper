@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 223916129911323344}
   - component: {fileID: 297088076917424400}
   - component: {fileID: 3918869492107013897}
+  - component: {fileID: 6364560987186184098}
   - component: {fileID: 6243725979057383574}
   - component: {fileID: 9166830426686808835}
   m_Layer: 0
@@ -141,6 +142,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetPlanet: {fileID: 0}
+--- !u!114 &6364560987186184098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5242260860381732072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce411ca9b0b3273479725495d21fd231, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 5242260860381732072}
+  homePositionY: -1.57
 --- !u!50 &6243725979057383574
 Rigidbody2D:
   serializedVersion: 5
