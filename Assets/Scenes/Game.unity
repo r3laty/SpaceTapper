@@ -503,6 +503,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Character
       objectReference: {fileID: 0}
+    - target: {fileID: 6243725979057383574, guid: 74bbf5b7626f3334d965cd5b97d37cc7, type: 3}
+      propertyPath: m_BodyType
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -936,8 +940,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ca1136e9f623e146b572c0faafbef7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravityRadius: 3
-  gravityForce: 2
+  gravityRadius: 1.5
+  gravityForce: 10
 --- !u!4 &7426577750813409822
 Transform:
   m_ObjectHideFlags: 0

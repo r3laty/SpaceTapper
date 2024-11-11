@@ -17,13 +17,12 @@ public class ProcedularGeneration : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("ProcedularGeneration Start");
-        MessageAboutNextPlanet.Instance.SetProcedularGeneration(this);
+        MessageAboutNextPlanet.Instance.NextPlanet += OnPlanetEnd;
     }
     public void OnPlanetEnd()
     {
         MovePlanet();
-        _currentPlanet = Instantiate(RandomPlanet(),RandomSpawnPoint().position,Quaternion.identity);
+        _currentPlanet = Instantiate(RandomPlanet(), RandomSpawnPoint().position, Quaternion.identity);
     }
     private void MovePlanet()
     {
@@ -69,5 +68,9 @@ public class ProcedularGeneration : MonoBehaviour
     private Transform RandomSpawnPoint()
     {
         return planetSpawnPoints[Random.Range(0, planetSpawnPoints.Count)];
+    }
+    private void OnDisable()
+    {
+        MessageAboutNextPlanet.Instance.NextPlanet -= OnPlanetEnd;
     }
 }

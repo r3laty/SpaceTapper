@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class Gravity : MonoBehaviour
 {
-    [SerializeField] private float gravityRadius = 5f;
-    [SerializeField] private float gravityForce = 9.81f;
+    [SerializeField] private float gravityRadius = 3;
+    [SerializeField] private float gravityForce = 10f;
     private Rigidbody2D _rb;
     private void Awake()
     {

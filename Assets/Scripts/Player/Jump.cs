@@ -12,11 +12,14 @@ public class Jump : MonoBehaviour
     private Rigidbody2D _rb;
     private Constraint _constraint;
     private bool _swiped;
+    private bool _hasSwiped;
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
         _constraint = GetComponent<Constraint>();
+
+        MessageAboutNextPlanet.Instance.NextPlanet += AvailableSwipes;
     }
     private void Start()
     {
@@ -25,7 +28,7 @@ public class Jump : MonoBehaviour
 
     private void Update()
     {
-        if (Input.touchCount > 0)
+        if (Input.touchCount > 0 && !_hasSwiped)
         {
             Touch touch = Input.GetTouch(0);
 
@@ -52,5 +55,15 @@ public class Jump : MonoBehaviour
             _rb.linearVelocity = direction * jumpForce;
             _constraint.enabled = false;
         }
+        _hasSwiped = true;
+        _rb.bodyType = RigidbodyType2D.Dynamic;
+    }
+    private void OnDisable()
+    {
+        MessageAboutNextPlanet.Instance.NextPlanet -= AvailableSwipes;
+    }
+    private void AvailableSwipes()
+    {
+        _hasSwiped = false;
     }
 }
