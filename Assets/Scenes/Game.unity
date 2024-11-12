@@ -174,7 +174,7 @@ GameObject:
   - component: {fileID: 106025922}
   - component: {fileID: 106025921}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: LeaveButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -242,7 +242,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 106025922}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 396023910}
+        m_TargetAssemblyTypeName: LooseMenu, Assembly-CSharp
+        m_MethodName: Leave
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &106025922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -290,6 +302,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 396023909}
+  - component: {fileID: 396023910}
   m_Layer: 5
   m_Name: Death/Retry
   m_TagString: Untagged
@@ -317,6 +330,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &396023910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 396023908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4122d014d2b6df41b6d45650939b8fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1934388236}
+  procedularGeneration: {fileID: 1177798672}
+  loosePanel: {fileID: 1618458254}
 --- !u!1 &423123860
 GameObject:
   m_ObjectHideFlags: 0
@@ -457,8 +485,8 @@ Transform:
   m_GameObject: {fileID: 484792129}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 2.312, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 2.77, y: 0, z: 0}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1138,7 +1166,7 @@ GameObject:
   - component: {fileID: 1396492690}
   - component: {fileID: 1396492689}
   m_Layer: 5
-  m_Name: Button
+  m_Name: AgainButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1206,7 +1234,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1396492690}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 396023910}
+        m_TargetAssemblyTypeName: LooseMenu, Assembly-CSharp
+        m_MethodName: Again
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1396492690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1256,7 +1296,6 @@ GameObject:
   - component: {fileID: 1618458254}
   - component: {fileID: 1618458256}
   - component: {fileID: 1618458255}
-  - component: {fileID: 1618458257}
   m_Layer: 5
   m_Name: LoosePanel
   m_TagString: Untagged
@@ -1273,7 +1312,7 @@ RectTransform:
   m_GameObject: {fileID: 1618458253}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 820048922}
@@ -1324,18 +1363,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1618458253}
   m_CullTransparentMesh: 1
---- !u!114 &1618458257
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1618458253}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4122d014d2b6df41b6d45650939b8fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1803914958
 GameObject:
   m_ObjectHideFlags: 0

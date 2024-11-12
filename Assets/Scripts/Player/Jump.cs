@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Jump : MonoBehaviour
 {
+    public bool Swiped { get => _hasSwiped; set => _hasSwiped = value; }
     [SerializeField] private float jumpForce = 5f;
     [SerializeField] private float minSwipeDistance = 50f;
 
@@ -11,7 +12,6 @@ public class Jump : MonoBehaviour
     private Vector2 _endTouchPosition;
     private Rigidbody2D _rb;
     private Constraint _constraint;
-    private bool _swiped;
     private bool _hasSwiped;
 
     private void Awake()
@@ -62,7 +62,7 @@ public class Jump : MonoBehaviour
     {
         MessageAboutNextPlanet.Instance.NextPlanet -= AvailableSwipes;
     }
-    private void AvailableSwipes()
+    public void AvailableSwipes()
     {
         _hasSwiped = false;
     }

@@ -3,6 +3,11 @@ using UnityEngine;
 
 public class ProcedularGeneration : MonoBehaviour
 {
+    public GameObject CurrentPlanet { get => _currentPlanet; set => _currentPlanet = value; }
+    public GameObject PrelastPlanet { get => _prelastPlanet; set => _prelastPlanet = value; }
+    public GameObject LastPlanet { get => _lastPlanet; set => _lastPlanet = value; }
+    public GameObject BasePlanet { get => basePlanet; set => basePlanet = value; }
+    public GameObject FirstPlanet { get => firstPlanet; set => firstPlanet = value; }
     [SerializeField] private ReturnToHome returnPlayer;
     [Space]
     [SerializeField] private float planetPositionY = -2.41f;
@@ -11,8 +16,8 @@ public class ProcedularGeneration : MonoBehaviour
     [SerializeField] private List<GameObject> planetPrefabs;
     [SerializeField] private List<Transform> planetSpawnPoints;
     private GameObject _currentPlanet = null;
-    private GameObject _previousPlanet = null;
-    private GameObject _prepreviousPlanet = null;
+    private GameObject _prelastPlanet = null;
+    private GameObject _lastPlanet = null;
     private GameObject _oldPlanets = null;
 
     private void Start()
@@ -26,10 +31,10 @@ public class ProcedularGeneration : MonoBehaviour
     }
     private void MovePlanet()
     {
-        if (_prepreviousPlanet != null)
+        if (_lastPlanet != null)
         {
-            _prepreviousPlanet?.transform.SetParent(_oldPlanets.transform);
-            _prepreviousPlanet.SetActive(false);
+            _lastPlanet?.transform.SetParent(_oldPlanets.transform);
+            _lastPlanet.SetActive(false);
         }
 
         if (basePlanet != null && basePlanet.activeSelf)
@@ -39,19 +44,19 @@ public class ProcedularGeneration : MonoBehaviour
 
         if (_currentPlanet != null)
         {
-            _previousPlanet = _currentPlanet;
+            _prelastPlanet = _currentPlanet;
             _currentPlanet = null;
         }
         else
         {
             firstPlanet.transform.position = new Vector2(0, planetPositionY);
-            _prepreviousPlanet = firstPlanet;
+            _lastPlanet = firstPlanet;
         }
 
-        if (_previousPlanet != null)
+        if (_prelastPlanet != null)
         {
-            _previousPlanet.transform.position = new Vector2(0, planetPositionY);
-            _prepreviousPlanet = _previousPlanet;
+            _prelastPlanet.transform.position = new Vector2(0, planetPositionY);
+            _lastPlanet = _prelastPlanet;
         }
 
         if (_oldPlanets == null)

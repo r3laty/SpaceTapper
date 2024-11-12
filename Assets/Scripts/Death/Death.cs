@@ -18,7 +18,7 @@ public class Death : MonoBehaviour
         {
             _playerRb.bodyType = RigidbodyType2D.Kinematic;
             _playerRb.linearVelocity = Vector2.zero;
-            _playerAnimator.SetTrigger("Nothing");
+            _playerAnimator.SetBool(AnimationTags.PlayerIdle, false);
             Dead?.Invoke();
         }
     }
